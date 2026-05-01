@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:docs.indeed.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:python-docx.readthedocs.io)",
+      "WebFetch(domain:docxtpl.readthedocs.io)"
+    ]
+  }
+}
