@@ -37,22 +37,45 @@ jobs:
       - name: Zip binary
         run: |
           cd dist
-          zip oasis-macos.zip oasis
+          zip DOWNLOAD-THIS-oasis-macos.zip oasis
           echo "Binary size: $(du -sh oasis | cut -f1)"
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/oasis-macos.zip
-          generate_release_notes: true
+          files: dist/DOWNLOAD-THIS-oasis-macos.zip
+          generate_release_notes: false
           body: |
-            ## Install
+            ## ⬇️ Download
 
-            1. Download **oasis-macos.zip** below
-            2. Unzip it — you'll get a file called `oasis`
-            3. Open Terminal and run:
-               ```
-               chmod +x ~/Downloads/oasis
-               sudo mv ~/Downloads/oasis /usr/local/bin/oasis
-               ```
-            4. Run `oasis` to open the app and follow the setup wizard
+            Click **DOWNLOAD-THIS-oasis-macos.zip** in the Assets list below.
+
+            > **Ignore** the "Source code" zip and tar.gz links — those are the raw code, not the app.
+
+            ---
+
+            ## Install (takes 2 minutes)
+
+            **1.** Double-click the zip to unzip it. You'll get a file called `oasis`.
+
+            **2.** Open **Terminal** (press `Cmd + Space`, type Terminal, hit Enter).
+
+            **3.** Paste these two commands:
+            ```
+            chmod +x ~/Downloads/oasis
+            sudo mv ~/Downloads/oasis /usr/local/bin/oasis
+            ```
+            Enter your Mac password when asked — that's normal.
+
+            **4.** If macOS says "cannot be opened because it is from an unidentified developer", run this once:
+            ```
+            xattr -dr com.apple.quarantine /usr/local/bin/oasis
+            ```
+
+            **5.** Run the app:
+            ```
+            oasis
+            ```
+
+            The menu opens. Go to **Settings** first to enter your job titles and locations,
+            then **My Documents** to upload your resume and cover letter.
