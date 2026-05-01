@@ -1,0 +1,58 @@
+name: Build & Release (macOS)
+
+on:
+  push:
+    tags:
+      - "v*"          # triggers on: git tag v0.1.0 && git push --tags
+
+jobs:
+  build-macos:
+    runs-on: macos-latest
+    permissions:
+      contents: write   # needed to create GitHub Releases
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Poetry
+        run: pip install poetry
+
+      - name: Install dependencies
+        run: poetry install --with dev
+
+      - name: Build binary with PyInstaller
+        run: |
+          poetry run pyinstaller \
+            --onefile \
+            --name oasis \
+            --clean \
+            --noconfirm \
+            src/oasis/main.py
+
+      - name: Zip binary
+        run: |
+          cd dist
+          zip oasis-macos.zip oasis
+          echo "Binary size: $(du -sh oasis | cut -f1)"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/oasis-macos.zip
+          generate_release_notes: true
+          body: |
+            ## Install
+
+            1. Download **oasis-macos.zip** below
+            2. Unzip it — you'll get a file called `oasis`
+            3. Open Terminal and run:
+               ```
+               chmod +x ~/Downloads/oasis
+               sudo mv ~/Downloads/oasis /usr/local/bin/oasis
+               ```
+            4. Run `oasis` to open the app and follow the setup wizard

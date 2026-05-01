@@ -5,7 +5,19 @@
       "WebFetch(domain:docs.indeed.com)",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:python-docx.readthedocs.io)",
-      "WebFetch(domain:docxtpl.readthedocs.io)"
+      "WebFetch(domain:docxtpl.readthedocs.io)",
+      "Bash(chmod +x *)",
+      "Bash(export PATH=\"$HOME/.local/bin:$PATH\")",
+      "Bash(poetry install *)",
+      "Bash(poetry run *)",
+      "Bash(poetry update *)",
+      "Bash(poetry lock *)",
+      "Bash(poetry env *)",
+      "Bash(ln -sf /home/kevin-n-01/.cache/pypoetry/virtualenvs/oasis-kOhF7LA3-py3.12/bin/oasis /home/kevin-n-01/.local/bin/oasis)",
+      "Bash(oasis --help)",
+      "Bash(oasis search *)",
+      "Bash(oasis setup *)",
+      "Bash(git add *)"
     ]
   }
 }
